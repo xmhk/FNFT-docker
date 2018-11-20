@@ -1,0 +1,22 @@
+FROM centos:centos7
+LABEL maintainer="Christoph Mahnke"
+LABEL description="FNFT/FNFTpy test environment centos "
+
+# this will take some time, as cmake, cython numpy have to 
+# be updated with recent versions
+RUN yum -y install gcc gcc-c++ gcc-gfortran git make yum-utils
+RUN yum-builddep -y python 
+RUN curl https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz > cmake.tar.gz
+RUN tar xvfa cmake.tar.gz 
+RUN cd cmake-3.5.2 && ./configure && gmake && make install
+RUN cd / && git clone https://github.com/FastNFT/FNFT.git
+RUN cd FNFT && mkdir build && cd build && cmake .. && make 
+RUN cp /FNFT/lib/libfnft.so.0.2.1 /usr/local/lib
+RUN cd / && curl -O https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz 
+RUN tar xf Python-3.5.0.tgz && cd Python-3.5.0 && ./configure &&  make && make install
+RUN git clone https://github.com/cython/cython.git cython
+RUN cd cython && python3 setup.py build && python3 setup.py install
+RUN git clone https://github.com/numpy/numpy.git numpy
+RUN cd numpy && python3 setup.py build && python3 setup.py install
+RUN git clone https://github.com/xmhk/FNFTpy.git
+RUN cd FNFTpy && git checkout development && python3 run_tests.py
