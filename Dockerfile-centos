@@ -19,4 +19,5 @@ RUN cd cython && python3 setup.py build && python3 setup.py install
 RUN git clone https://github.com/numpy/numpy.git numpy
 RUN cd numpy && python3 setup.py build && python3 setup.py install
 RUN git clone https://github.com/xmhk/FNFTpy.git
-RUN cd FNFTpy && git checkout development && python3 run_tests.py
+RUN cd FNFTpy && python3 run_tests.py
+# RUN cd FNFTpy && git checkout development && python3 run_tests.py

@@ -8,4 +8,5 @@ RUN cd FNFT && mkdir build && cd build && cmake .. && make
 RUN cd /
 RUN cp FNFT/lib/libfnft.so.0.2.1 /usr/local/lib/
 RUN git clone https://github.com/xmhk/FNFTpy.git
-RUN cd FNFTpy && git checkout development && python3 run_tests.py
+RUN cd FNFTpy && python3 run_tests.py
+# RUN cd FNFTpy && git checkout development && python3 run_tests.py
