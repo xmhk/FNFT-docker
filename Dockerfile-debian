@@ -7,7 +7,7 @@ RUN apt-get install -y cmake git gfortran python3 python3-numpy
 RUN git clone https://github.com/FastNFT/FNFT.git
 RUN cd FNFT && mkdir build && cd build && cmake .. && make
 RUN cd /
-RUN cp FNFT/lib/libfnft.so.0.2.1 /usr/local/lib/
+RUN cp FNFT/lib/libfnft.so /usr/local/lib/
 RUN git clone https://github.com/xmhk/FNFTpy.git
 RUN cd FNFTpy && python3 run_tests.py
 

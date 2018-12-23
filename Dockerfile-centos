@@ -11,7 +11,7 @@ RUN tar xvfa cmake.tar.gz
 RUN cd cmake-3.5.2 && ./configure && gmake && make install
 RUN cd / && git clone https://github.com/FastNFT/FNFT.git
 RUN cd FNFT && mkdir build && cd build && cmake .. && make 
-RUN cp /FNFT/lib/libfnft.so.0.2.1 /usr/local/lib
+RUN cp /FNFT/lib/libfnft.so /usr/local/lib
 RUN cd / && curl -O https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz 
 RUN tar xf Python-3.5.0.tgz && cd Python-3.5.0 && ./configure &&  make && make install
 RUN git clone https://github.com/cython/cython.git cython
